@@ -1,8 +1,8 @@
 patient_list = [
     ["1234", "Stark", "Arya", "08:00", "07/04/2000", "111-111-1111", "Annual visit"], 
     ["4321", "Snow", "Jon", "15:40", "02/14/1990", "222-222-2222", "Rash"],
-    ["2345", "Lannister", "Tyrion", "10:00", "12/25/1988", "333-333-3333", "Diabetes follow-up"],
-    ["5432", "Lannister", "Cersei", "09:30", "10/31/1984", "444-444-4444", "Annual visit"],
+    ["2345", "Stark", "Bran", "10:00", "12/25/1988", "333-333-3333", "Diabetes follow-up"],
+    ["5432", "Arryn", "Jon", "09:30", "10/31/1984", "444-444-4444", "Annual visit"],
     ]
 
 
@@ -18,7 +18,7 @@ def login_page():
     password = input("Enter Password: ")
 
     while True:
-        if username == "123" and password == "111":
+        if username == "pearpear" and password == "Pear123":
             break
         else:
             print("Username or password are incorrect. Please try again.")
@@ -30,13 +30,13 @@ def login_page():
 def home_page():
     while True:
         print("\n")
-        print("Today's Schedule:")
+        print("~Today's Schedule~")
         for patient in patient_list:
-            print(patient[0], patient[1], patient[2], patient[3])
+            print(patient[0], "     ", patient[1], "     ", patient[2], "     ", patient[3])
 
         print("""
         Options:
-        1) View and/or update patient information
+        1) View additional patient information
         2) Add a new patient to the schedule
         3) Remove a patient from the schedule
         4) Go to feature description page
@@ -60,7 +60,7 @@ def home_page():
 def patient_info():
     print("\n")
     mrn = input("Enter medical record number of patient you wish to view: #")
-    print("\n")
+    print("\n~Patient Information~")
     for patient in patient_list:
             if patient[0] == mrn:
                 print(f"MRN: {patient[0]}")
@@ -74,46 +74,27 @@ def patient_info():
 
     print("""
         Options:
-        1) Update patient information
-        2) Remove patient
-        3) Return to Home Page
+        1) Remove this patient
+        2) Return to Home Page
         """)
 
     option = input("Enter Option number: ")
     if option == "1":
-        update_patient()
-    if option == "2":
         remove_patient()
-    if option == "3":
+    if option == "2":
         home_page()
 
 
-# Update Patient Page (4)
-def update_patient():
-    print("\n")
-
-
-# Add Patient Page (5)
+# Add Patient Page (4)
 def add_patient():
-    # print("\nAdding a patient...")
-    # mrn = input("Enter patient medical record number (XXXX): #")
-    # ln = input("Enter patient last name: ")
-    # fn = input("Enter patient first name: ")
-    # time = input("Enter patient appointment time (HH:MM): ")
-    # dob = input("Enter patient date of birth (MM/DD/YYYY): ")
-    # phone = input("Enter patient phone number (XXX-XXX-XXXX): ")
-    # cc = input("Enter patient's reason for visit: ")
-
-    # patient_list.append([mrn, ln, fn, time, dob, phone, cc])
-
     fields = {
         "mrn": "Enter patient medical record number (XXXX): #",
         "ln": "Enter patient last name: ",
         "fn": "Enter patient first name: ",
         "time": "Enter patient appointment time (HH:MM): ",
         "dob": "Enter patient date of birth (MM/DD/YYYY): ",
-        "phone": "Enter patient phone number (XXX-XXX-XXXX): ",
-        "cc": "Enter patient's reason for visit: "
+        "contact": "Enter patient phone number (XXX-XXX-XXXX): ",
+        "reason": "Enter patient's reason for visit: "
     }
 
     patient_data = {}
@@ -141,8 +122,8 @@ def add_patient():
         patient_data["fn"], 
         patient_data["time"], 
         patient_data["dob"], 
-        patient_data["phone"], 
-        patient_data["cc"]
+        patient_data["contact"], 
+        patient_data["reason"]
     ])
     
     print("\nPatient successfully added!")
@@ -160,7 +141,7 @@ def add_patient():
         home_page()
 
     
-# Remove Patient Page (6)
+# Remove Patient Page (5)
 def remove_patient():
     print("\n")
     mrn = input("Enter medical record number of patient you wish to remove: #")
@@ -176,7 +157,6 @@ def remove_patient():
                 print("\n")
                 print("Patient successfully removed!")
                 break
-    print("\n")
     print("""
         Options:
         1) Remove another patient
@@ -190,21 +170,22 @@ def remove_patient():
         home_page()
 
 
-# Feature Description Page (7)
+# Feature Description Page (6)
 def feature_page():
     while True:
         print("\n")
-        print("Feature Descriptions")
+        print("~Feature Descriptions~")
 
         print("""
-        - View and/or update patient information:
-        View additional patient info such as DOB, contact info, reason for visit, and medical history. 
-        Keep patient records up-to-date.
+        - View additional patient information:
+        View additional patient info such as DOB, contact info, and reason for visit. 
         - Add a new patient to the schedule:
-        Add a patient to the schedule with details such as medical record number, last name, first name, and appointment time.
+        Add a patient to the schedule with details such as medical record number, 
+        last name, first name, and appointment time.
         - Remove a patient from the schedule:
-        Remove a patient who has canceled or no-showed from Today's Schedule by directly searching their medical record number
-        or by first going to their information page and removing from there.  
+        Remove a patient who has canceled or no-showed from Today's Schedule by 
+        directly searching their medical record number or by first going to their 
+        information page and removing from there.  
         """)    
 
         print("""
@@ -220,4 +201,3 @@ def feature_page():
 if __name__ == "__main__":
     login_page()
     home_page()
-
